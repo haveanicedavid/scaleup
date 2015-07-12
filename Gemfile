@@ -19,10 +19,11 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'openssl'
 gem 'google_timezone'
 gem 'geokit'
-gem 'capybara'
-gem "capybara-webkit"
-
 gem 'newrelic_rpm'
+gem 'capybara'
+gem 'poltergeist'
+# gem "capybara-webkit"
+
 
 
 group :development, :test do
