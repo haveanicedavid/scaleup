@@ -16,9 +16,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-gem 'openssl'
+# gem 'openssl'
 gem 'google_timezone'
 gem 'geokit'
+gem 'capybara'
+gem "capybara-webkit"
+
+gem 'newrelic_rpm'
 
 
 group :development, :test do
@@ -26,7 +30,6 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'rspec-rails'
-  gem 'capybara'
   gem 'launchy'
   gem 'pry'
   gem 'factory_girl_rails', '~> 4.5.0'
