@@ -14,7 +14,8 @@ class Admin::VenuesController < ApplicationController
 
   def create
     @venue = Venue.new(venue_params)
-    if @venue.location_finder && @venue.save
+    # if @venue.location_finder && @venue.save
+    if @venue.save
       redirect_to admin_venues_path
     else
       flash[:errors] = "Invalid location"

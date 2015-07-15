@@ -3,7 +3,8 @@ class Seller::UsersController < ApplicationController
     @user = User.find_by(slug: params[:slug])
     if current_user.admin? || @user.slug == current_user.slug
       @items = @user.items
-      @user_events = @items.active.group_by { |item| item.event }
+      @user_events = @items.group_by { |item| item.event }
+      # @user_events = @items.active.group_by { |item| item.event }
       @sold_events = @items.sold.group_by { |item| item.event }
       @inactive_events = @items.inactive.group_by { |item| item.event }
     else

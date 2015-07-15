@@ -4,7 +4,12 @@ class StaticPagesController < ApplicationController
   end
 
   def index
-    @next_events = Event.active.order(:date).first(5)
-    @just_added = Event.active.order(:created_at).last(2)
+    @events = Event.all
   end
+  
+  # def index
+  #   @next_events = Event.active.order(:date).first(5)
+  #   @just_added = Event.active.order(:created_at).last(2)
+  # end
+
 end
