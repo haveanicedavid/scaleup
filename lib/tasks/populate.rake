@@ -1,69 +1,58 @@
 require "populator"
 
-desc "Simulate load against HubStub application"
+desc "Adding Data for HubStb"
 task :populate => :environment do
-  @venues     = Venue.all
+  @venues = Venue.all
   @categories = Category.all
-  @images     = Image.all
-
-  event_count = 0
-  Event.populate(30_000) do |event|
-    event.title       = Faker::Company.name
-    event.description = Faker::Company.catch_phrase
-    event.date        = 22.days.from_now
-    event.start_time  = "2000-01-01 22:30:00"
-    event.approved    = true
-    event.image_id    = @images.sample.id
-    event.venue_id    = @venues.sample.id
-    event.category_id = @categories.sample.id
-    event_count += 1
-    puts "Event number #{event_count} created"
-  end
+  @images = Image.all
   
-  @events = Event.all
-  
-  user_count = 0
-  item_count = 0
   User.populate(200_000) do |user|
-    user.full_name       = Faker::Name.name
-    user.slug            = user.full_name.gsub(" ", "-")
-    user.email           = Faker::Internet.email
+    user.full_name = "Name_#{user.id}"
+    user.email = "user_#{user.id}@example.com"
+    user.slug = user.full_name.gsub(" ", "-")
     user.password_digest = "password"
-    user.street_1        = Faker::Address.street_address
-    user.street_2        = Faker::Address.secondary_address
-    user.city            = Faker::Address.city
-    user.state           = Faker::Address.state
-    user.zipcode         = 39247
-    user.display_name    = Faker::Internet.user_name
+    user.street_1 = "Address1_#{user.id}"
+    user.street_2 = "Address2_#{user.id}"
+    user.city = "New York"
+    user.state = "NY"
+    user.zipcode = 10000
+    user.display_name = "User #{user.id}"
+    puts "User #{user.id} created"
+   end
 
-    user_count += 1
-    puts "User number #{user_count} created"
-    
-    
-    Item.populate(3) do |item|
-      item.unit_price      = rand(1000..10000)
-      item.pending         = false
-      item.sold            = false
-      item.section         = rand(1..100)
-      item.row             = rand(1..50)
-      item.seat            = rand(1..20)
-      item.delivery_method = "physical"
-      item.event_id        = @events.sample.id
-      item.user_id         = user.id
+   @users = User.all
 
-      item_count += 1
-      puts "Item number #{item_count} created"
-    end
+  Event.populate(30_000) do |event|
+    event.title = "Event_#{event.id}"
+    event.description = "Description_#{event.id}"
+    event.date = 21.days.from_now
+    event.start_time = "2000-01-01 22:30:00"
+    event.approved = true
+    event.image_id = @images.sample.id
+    event.venue_id = @venues.sample.id
+    event.category_id = @categories.sample.id
+    puts "Event #{event.id} created"
   end
 
-  order_count = 0
+  @events = Event.all
+    
+  Item.populate(500_000) do |item|
+    item.unit_price = rand(1000..10000)
+    item.pending = false
+    item.sold = false
+    item.section = rand(1..100)
+    item.row = rand(1..50)
+    item.seat = rand(1..20)
+    item.delivery_method = "physical"
+    item.event_id = @events.sample.id
+    item.user_id = @users.sample.id
+    puts "Item #{item.id} created"
+  end
+
   Order.populate(50_000) do |order|
-    users = User.all.count
+    order.user_id = @users.sample.id
     order.status = "ordered"
-    order.user_id = rand(1..users)
-    order.total_price = rand(1000..100000)
-    order_count += 1
-    puts "order #{order_count} created"
-  end
+    puts "Order #{order.id} : For User #{order.user_id} has been created"
+  end 
 
-end
+end 
