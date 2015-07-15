@@ -22,6 +22,18 @@ class Seed
       { name: "Sports" },
       { name: "Music" },
       { name: "Theater" },
+      { name: "Space" },
+      { name: "Tech" },
+      { name: "Sci-fi" },
+      { name: "Virtual Reality" },
+      { name: "Circus" },
+      { name: "Rodeo" },
+      { name: "Rock" },
+      { name: "Science" },
+      { name: "Literary" },
+      { name: "Travel" },
+      { name: "History" },
+      { name: "Renaissance" },
     ])
   end
 
@@ -60,8 +72,26 @@ class Seed
        location: "Portland, OR" },
      { name: "Soldier Field",
        location: "Chicago, IL"  },
-     { name: "Emirates Stadium",
+     { name: "Emirates Stadium1",
        location: "London, England" },
+     { name: "Emirates Stadium2",
+       location: "London, England3" },
+     { name: "Emirates Stadium4",
+       location: "London, England5" },
+     { name: "Emirates Stadium6",
+       location: "London, England" },
+     { name: "Emirates Stadium7",
+       location: "London, England" },
+     { name: "Emirates Stadium8",
+       location: "London, England" },
+     { name: "Emirates Stadium9",
+       location: "London, England" },
+     { name: "Emirates Stadium10",
+       location: "London, England" },
+     { name: "Emirates Stadium11",
+       location: "London, England" },
+     { name: "Emirates Stadium12",
+       location: "London, England" }
     ])
   end
 

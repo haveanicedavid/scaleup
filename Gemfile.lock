@@ -56,7 +56,7 @@ GEM
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cliver (0.3.2)
-    cocaine (0.5.5)
+    cocaine (0.5.7)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     coffee-rails (4.1.0)
@@ -157,6 +157,7 @@ GEM
       cliver (~> 0.3.1)
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
+    populator (1.0.0)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -285,6 +286,7 @@ DEPENDENCIES
   paperclip (~> 4.2)
   pg
   poltergeist
+  populator
   pry
   rails (= 4.2.0)
   rails_12factor (= 0.0.2)

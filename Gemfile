@@ -22,8 +22,8 @@ gem 'geokit'
 gem 'newrelic_rpm'
 gem 'capybara'
 gem 'poltergeist'
+gem 'populator'
 # gem "capybara-webkit"
-
 
 
 group :development, :test do
