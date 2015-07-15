@@ -9,7 +9,10 @@
   </div>
   <div class="col-lg-9 event-listing">
     <div class="event-listing-inner">
-      <%= render partial: "shared/event_table" %>
+      <% cache "items-index-#{@events.first.updated_at}-#{@events.count}" do%>
+        <%= render partial: "shared/event_table" %>
+        <%= will_paginate %>
+      <% end %>
     </div>
   </div>
 </div>

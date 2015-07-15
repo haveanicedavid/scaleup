@@ -84,30 +84,30 @@ class Seed
     count = 0
     20.times do
       User.create!(
-        full_name:             Faker::Name.name,
-        email:                 Faker::Internet.email,
-        password:              'password', 
+        full_name: Faker::Name.name,
+        email: "#{Faker::Lorem.characters(10)}#{Faker::Internet.email}",
+        password: 'password', 
         password_confirmation: 'password', 
-        street_1:              Faker::Address.street_address,
-        street_2:              Faker::Address.secondary_address,
-        city:                  Faker::Address.city,
-        state:                 Faker::Address.state,
-        zipcode:               80226,
-        display_name:          Faker::Internet.user_name
+        street_1: Faker::Address.street_address,
+        street_2: Faker::Address.secondary_address,
+        city: Faker::Address.city,
+        state: Faker::Address.state,
+        zipcode: 80226,
+        display_name: "#{Faker::Lorem.characters(47)}#{rand(100..999)}"
       )
       puts "user #{count += 1} created"
     end
     User.populate(199_980) do |user|
-      user.full_name       = Faker::Name.name
-      user.email           = "#{Faker::Lorem.characters(10)}#{Faker::Internet.email}"
+      user.full_name = Faker::Name.name
+      user.email = "#{Faker::Lorem.characters(10)}#{Faker::Internet.email}"
       user.password_digest = 'password' #BCrypt::Password.create('password')
-      user.street_1        = Faker::Address.street_address
-      user.street_2        = Faker::Address.secondary_address
-      user.city            = Faker::Address.city
-      user.state           = Faker::Address.state
-      user.zipcode         = 80226
-      user.slug            = "#{Faker::Lorem.characters(47)}#{rand(100..999)}"
-      puts "user #{count  += 1} created"
+      user.street_1 = Faker::Address.street_address
+      user.street_2 = Faker::Address.secondary_address
+      user.city = Faker::Address.city
+      user.state = Faker::Address.state
+      user.zipcode = 80226
+      user.slug = "#{Faker::Lorem.characters(47)}#{rand(100..999)}"
+      puts "user #{count += 1} created"
     end
     puts "200,000 users generated"
   end 
@@ -118,18 +118,18 @@ class Seed
     users  = (User.count / 6).to_i
     puts "#{users} sellers"
     Item.populate(500_000) do |item|
-      item.unit_price          = rand(1000..10000)
-      item.pending             = [ true, false ]
-      item.sold                = [ true, false ]
-      item.section             = rand(1..100)
-      item.row                 = rand(1..50)
-      item.seat                = rand(1..20)
-      item.delivery_method     = [ "electronic", "physical" ]
-      item.event_id            = rand(1..events)
-      item.user_id             = rand(1..users)
-      item.ticket_file_name    = "fake_ticket.pdf" 
+      item.unit_price = rand(1000..10000)
+      item.pending = [ true, false ]
+      item.sold = [ true, false ]
+      item.section = rand(1..100)
+      item.row = rand(1..50)
+      item.seat = rand(1..20)
+      item.delivery_method = [ "electronic", "physical" ]
+      item.event_id = rand(1..events)
+      item.user_id = rand(1..users)
+      item.ticket_file_name = "fake_ticket.pdf" 
       item.ticket_content_type = "application/pdf"
-      item.ticket_file_size    = 258297
+      item.ticket_file_size = 258297
       puts "item #{count += 1} created"
     end
     puts "500,000 items generated"
