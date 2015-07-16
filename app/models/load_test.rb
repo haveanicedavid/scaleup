@@ -100,7 +100,7 @@ class LoadTest
     session.click_link("My Hubstub")
     session.click_link("List a Ticket")
     puts "Visited List a Ticket"
-    # session.fill_in "item[event_id]", with: rand(1..20000)
+    session.fill_in "item[event_id]", with: rand(1..20000)
     session.fill_in "item[section]", with: "A3"
     session.fill_in "item[row]", with: "123"
     session.fill_in "item[seat]", with: "5"
