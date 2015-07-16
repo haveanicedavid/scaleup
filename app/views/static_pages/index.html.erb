@@ -11,7 +11,7 @@
           <th class="feature-event-date-head">Date</th>
           <th colspan=2 class="feature-event">Event</th>
         </tr>
-        <% @next_events.each do |event| %>
+        <% @events.order(:date).first(5).each do |event| %>
         <tr class="feature-event-row">
           <td>
             <div class="feature-event-date">
@@ -25,7 +25,7 @@
             <p class="feature-event-venue"> <%= link_to(event.venue.name, venue_path(event.venue)) %></p>
           </td>
           <td class="feature-tickets"><a href="#">
-              <p><%= link_to(event.items.count, event_path(event)) %></p>
+              <p><%= link_to(event.items.active.count, event_path(event)) %></p>
               <p>Available</p>
           </a></td>
         </tr>
@@ -43,7 +43,7 @@
           <th class="feature-event-date-head">Date</th>
           <th colspan=2 class="feature-event">Event</th>
         </tr>
-        <% @just_added.each do |event| %>
+        <% @events.last(2).each do |event| %>
         <tr class="feature-event-row">
           <td>
             <div class="feature-event-date">

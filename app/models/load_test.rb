@@ -4,7 +4,7 @@ class LoadTest
   attr_reader :session
   
   def initialize
-    @session = Capybara::Session.new(:selenium)
+    @session = Capybara::Session.new(:poltergeist)
   end
   
   def browse
@@ -13,7 +13,7 @@ class LoadTest
         visit_root
         visit_random_venue_page
         log_in("sample@sample.com", "password")
-        create_ticket_then_edit_and_destroy
+        create_edit_destroy_ticket
         past_orders
         edit_profile
         log_out
@@ -24,10 +24,11 @@ class LoadTest
         admin_delete_event
         admin_create_event
         admin_visit_venues
-        admin_create_venue_and_delete_it
-        admin_create_category_edit_and_delete_it
+        admin_create_destroy_venue
+        admin_create_edit_delete_category
         log_out
       end
+      
       rescue StandardError => error
         puts "ERROR: #{error}"
         if session.find_link('Logout')
@@ -51,7 +52,7 @@ class LoadTest
     session.fill_in "session[email]", with: email
     session.fill_in "session[password]", with: password
     session.click_link_or_button("Log in")
-    puts "Login"
+    puts "You're logged in!!"
   end
   
   def past_orders
@@ -69,7 +70,7 @@ class LoadTest
     session.click_button("Update Account")
   end
   
-  def create_ticket_then_edit_and_destroy
+  def create_edit_destroy_ticket
     session.click_link("My Hubstub")
     session.click_link("List a Ticket")
     session.fill_in "item[event_id]", with: rand(1..20000)
@@ -79,7 +80,7 @@ class LoadTest
     session.fill_in "item[unit_price]", with: 30
     session.select  "Electronic", from: "item[delivery_method]"
     session.click_button("List Ticket")
-    puts "New ticket created"
+    puts "Made a new ticket!!!"
     
     session.click_link("My Hubstub")
     session.click_link("My Listings")
@@ -94,7 +95,7 @@ class LoadTest
   
   def log_out
     session.click_link("Logout")
-    puts "Logout"
+    puts "Successfully Logged Out"
   end
   
   def search_events
@@ -174,7 +175,7 @@ class LoadTest
     puts "venue edited"
   end
   
-  def admin_create_venue_and_delete_it
+  def admin_create_destroy_venue
     session.click_link_or_button("Create Venue")
     session.fill_in "venue[name]", with: "fake venue"
     session.fill_in "venue[location]", with: "no where"
@@ -183,7 +184,7 @@ class LoadTest
     puts "venue created and deleted"
   end
   
-  def admin_create_category_edit_and_delete_it
+  def admin_create_edit_delete_category
     session.click_link "Events"
     session.click_link "Manage Categories"
     session.click_link_or_button("Create Category")
@@ -201,4 +202,5 @@ class LoadTest
   def visit_random_venue_page
     session.visit("http://scale-up.herokuapp.com/venues/#{rand(1..15)}")
   end
+
 end
