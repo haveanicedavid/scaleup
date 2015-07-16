@@ -12,7 +12,7 @@ class LoadTest
       loop do  
         visit_root
         visit_random_venue_page
-        log_in("sample@sample.com", "password")
+        log_in("bill@gates.com", "password")
         create_edit_destroy_ticket
         past_orders
         edit_profile
@@ -41,7 +41,7 @@ class LoadTest
   end
   
   def visit_root
-    session.visit("http://scale-up.herokuapp.com")
+    session.visit("http://ddanielscaleup.herokuapp.com/")
     # session.visit("http://localhost:3000")
     
     session.click_link("Adventure")
@@ -200,7 +200,7 @@ class LoadTest
   end   
   
   def visit_random_venue_page
-    session.visit("http://scale-up.herokuapp.com/venues/#{rand(1..15)}")
+    session.visit("http://ddanielscaleup.com/venues/#{rand(1..15)}")
   end
 
 end
